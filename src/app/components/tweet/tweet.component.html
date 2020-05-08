@@ -1,0 +1,53 @@
+<section>
+<a class="tweet-link" routerLink="/tweet-details/{{tweet.id_str}}">
+<mat-card class="container">
+  
+    <mat-card-content class="item1">
+        <section class="image" >
+            <img class="profileImage circularImage" src="{{tweet.user.profile_image_url}}" alt="Photo">
+        </section>
+    </mat-card-content>
+    <section class="item2">
+        <mat-card-content>
+            <header>
+                <h4>
+                    <strong>
+                        {{tweet.user.name}} <mat-icon class="verified" *ngIf="tweet.user.verified">verified_user</mat-icon>
+                    </strong>
+            
+                    <span class="screenName"> @{{tweet.user.screen_name}} - {{tweet.created_at | date:'h:mm'}} p.m. - {{tweet.created_at | date:'d LLL. yy' | lowercase}}</span>
+                </h4>
+            </header>
+
+            <section>
+                {{tweet.text}}
+
+                <div class="tweetImageContainer" *ngIf="tweet.entities.media">
+                    <img
+                      src="{{tweet.entities.media[0].media_url}}"
+                      width="400"
+                      height="250"
+                      class="tweetImage"
+                    />
+                </div>
+            </section>
+        </mat-card-content>
+
+        <mat-card-content>
+            <button mat-mini-fab class="button heart" color="primary">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <span>{{tweet.favorite_count}}</span>
+            <button mat-mini-fab class="button rt" color="primary">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+            <span>{{tweet.retweet_count}}</span>
+            <button mat-mini-fab class="button comment" color="primary">
+                <mat-icon>comment</mat-icon>
+            </button>
+        </mat-card-content>
+    </section>
+  
+</mat-card>
+</a>
+</section>
